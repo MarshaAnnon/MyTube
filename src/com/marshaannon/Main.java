@@ -7,5 +7,8 @@ public class Main {
         video.setFileName("birthday.mp4");
         video.setTitle("Happy Birthday Yerrhum!");
         video.setUser(new User("marsha@gmail.com"));
+
+        var processor = new VideoProcessor();
+        processor.process(video);
     }
 }

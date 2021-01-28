@@ -1,14 +1,25 @@
 package com.marshaannon;
 
 public class VideoProcessor {
+    private VideoEncoder encoder;
+    private VideoDatabase database;
+    private NotificationService notificationService;
+
+    //Initializing private fields with the constructor (constructor injection method)
+    public VideoProcessor(
+            VideoEncoder encoder,
+            VideoDatabase database,
+            NotificationService notificationService
+    ) {
+        this.encoder = encoder;
+        this.database = database;
+        this.notificationService = notificationService;
+    }
+
+    // implementing the process method
     public void process(Video video) {
-        var encoder = new VideoEncoder();
         encoder.encode(video);
-
-        var database = new VideoDatabase();
         database.store(video);
-
-        var emailService = new EmailService();
-        emailService.sendEmail(video.getUser());
+        notificationService.notify(video.getUser());
     }
 }

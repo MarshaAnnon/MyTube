@@ -8,7 +8,11 @@ public class Main {
         video.setTitle("Happy Birthday Yerrhum!");
         video.setUser(new User("marsha@gmail.com"));
 
-        var processor = new VideoProcessor();
+        var processor = new VideoProcessor(
+                new XVideoEncoder(),
+                new SqlVideoDatabase(),
+                new NotificationService()
+        );
         processor.process(video);
     }
 }
